@@ -81,6 +81,13 @@ RSpec.describe CustomerImporter do
     CustomerImporter.import(file_path: pipes_path)
   end
 
+  CustomerImporter::COMMON_SEPERATORS.each do |sep|
+    it "can detect when #{sep} is used" do
+      line = 'a b c d e'.gsub(' ', sep)
+      expect(CustomerImporter.send(:determine_seperator, line)).to eq(sep)
+    end
+  end
+
   it 'returns an array of hashes with customer data from comma separated values' do
     data = CustomerImporter.import(file_path: commas_path)
     expect(data).to eq(commas_result)
