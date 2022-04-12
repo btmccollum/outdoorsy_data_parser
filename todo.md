@@ -6,6 +6,7 @@ Features
 
 # Output
 - Full name of customer, email, vehicle type, vehicle name, vehicle length
+- { full_name:, email:, vehicle_type:, vehicle_name:, vehicle_length: }
 
 # MVP Features
 - Option to support by vehicle type OR by a customer's full name
