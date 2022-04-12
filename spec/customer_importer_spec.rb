@@ -8,31 +8,31 @@ RSpec.describe CustomerImporter do
   let(:result) do
     [
       {
-        full_name: 'Greta Thunberg',
+        full_name: 'greta thunberg',
         email: 'greta@future.com',
         vehicle_type: 'sailboat',
-        vehicle_name: 'Fridays For Future',
+        vehicle_name: 'fridays for future',
         vehicle_length: '32’'
       },
       {
-        full_name: 'Xiuhtezcatl Martinez',
+        full_name: 'xiuhtezcatl martinez',
         email: 'martinez@earthguardian.org',
         vehicle_type: 'campervan',
-        vehicle_name: 'Earth Guardian',
+        vehicle_name: 'earth guardian',
         vehicle_length: '28 feet'
       },
       {
-        full_name: 'Mandip Singh Soin',
+        full_name: 'mandip singh soin',
         email: 'mandip@ecotourism.net',
         vehicle_type: 'motorboat',
-        vehicle_name: 'Frozen Trekker',
+        vehicle_name: 'frozen trekker',
         vehicle_length: '32’'
       },
       {
-        full_name: 'Jimmy Buffet',
+        full_name: 'jimmy buffet',
         email: 'jb@sailor.com',
         vehicle_type: 'sailboat',
-        vehicle_name: 'Margaritaville',
+        vehicle_name: 'margaritaville',
         vehicle_length: '40 ft'
       }
     ]
