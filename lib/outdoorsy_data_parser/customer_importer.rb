@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-#
-require "pry"
+
+require 'pry'
 
 # Handle CSV parsing
 class CustomerImporter
@@ -32,4 +32,3 @@ class CustomerImporter
     @data
   end
 end
-
