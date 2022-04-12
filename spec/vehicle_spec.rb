@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'outdoorsy_data_parser/vehicle'
+require 'pry'
 
 RSpec.describe Vehicle do
   it 'can take a name, type, and length' do

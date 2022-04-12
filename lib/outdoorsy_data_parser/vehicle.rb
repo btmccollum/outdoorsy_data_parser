@@ -9,6 +9,8 @@ class Vehicle
     @length_ft = extract_length(length_ft)
   end
 
+  # NOTE: assumes ft as a standard measure, look into handling other
+  # measurement units if necessary
   def extract_length(len)
     return unless len
 

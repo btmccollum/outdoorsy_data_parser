@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'outdoorsy_data_parser/customer_importer'
+require 'pry'
 
 RSpec.describe CustomerImporter do
   let(:commas_path) { './spec/fixtures/files/commas.txt' }
@@ -90,6 +91,22 @@ RSpec.describe CustomerImporter do
     data = CustomerImporter.import(file_path: pipes_path)
     expect(data).to eq(pipes_result)
     expect(data.length).to eq(4)
+  end
+
+  it 'returns an error when passed an invalid sort by value' do
+    expect do
+      CustomerImporter.import(file_path: commas_path, sort_by: 'smell')
+    end.to raise_error(
+      'Sort by must be one of: full_name, email, vehicle_name, vehicle_type, vehicle_length_ft'
+    )
+  end
+
+  it 'returns an error when passed an invalid sort order value' do
+    expect do
+      CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_name', sort_order: 'fish')
+    end.to raise_error(
+      'Sort order can only be \'asc\' or \'desc\''
+    )
   end
 
   context 'sorting' do

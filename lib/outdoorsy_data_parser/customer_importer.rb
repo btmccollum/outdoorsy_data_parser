@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 class CustomerImporter
   COMMON_SEPERATORS = ['|', ',', ';', '\t', '#'].freeze
   HEADERS = %w[full_name email vehicle_name vehicle_type vehicle_length_ft].freeze
 
+  # TODO: account for data in addition to file
   def self.import(file_path:, sort_by: nil, sort_order: 'asc')
-    return 'Sort order can only be \'asc\' or \'desc\'' unless %w[asc desc].include?(sort_order)
+    raise 'Sort order can only be \'asc\' or \'desc\'' unless %w[asc desc].include?(sort_order)
 
-    return "Sort by must be one of: #{HEADERS.join(', ')}" if sort_by && !HEADERS.include?(sort_by.downcase)
+    raise "Sort by must be one of: #{HEADERS.join(', ')}" if sort_by && !HEADERS.include?(sort_by.downcase)
 
     @file_path = file_path
     @data = []
@@ -26,6 +25,7 @@ class CustomerImporter
     @data
   end
 
+  # make a probable determination of delimiter being used by file/data
   def self.determine_seperator(line)
     COMMON_SEPERATORS.group_by { |seperator| line.count(seperator) }.max.flatten[1]
   end

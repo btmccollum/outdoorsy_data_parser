@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'outdoorsy_data_parser/customer'
+require 'pry'
 
 RSpec.describe Customer do
   it 'takes a first and last name' do
@@ -34,6 +35,18 @@ RSpec.describe Customer do
         first_name: 'johnny',
         last_name: 'test'
       ).full_name).to eq('johnny test')
+    end
+
+    it 'returns nil if both first and last is missing' do
+      expect(Customer.new.full_name).to be_nil
+    end
+
+    it 'returns only first if last is missing' do
+      expect(Customer.new(first_name: 'Eric').full_name).to eq('eric')
+    end
+
+    it 'returns only last if first is missing' do
+      expect(Customer.new(last_name: 'Smith').full_name).to eq('smith')
     end
   end
 end
