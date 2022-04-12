@@ -92,27 +92,38 @@ RSpec.describe CustomerImporter do
     expect(data.length).to eq(4)
   end
 
-  it 'can optionally sort by valid headers, asc' do
-    data = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_type')
-    expect(data.first[:vehicle_type]).to eq('campervan')
-    expect(data.last[:vehicle_type]).to eq('sailboat')
-    data2 = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_length_ft')
-    expect(data2.first[:vehicle_length_ft]).to eq(28)
-    expect(data2.last[:vehicle_length_ft]).to eq(40)
-  end
+  context 'sorting' do
+    it 'does not sort data by default' do
+      data = CustomerImporter.import(file_path: commas_path)
+      expect(data.first[:vehicle_name]).to eq(commas_result.first[:vehicle_name])
+      expect(data.last[:vehicle_name]).to eq(commas_result.last[:vehicle_name])
+    end
 
-  it 'can optionally sort by valid headers, desc' do
-    data = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_type', sort_order: 'desc')
-    expect(data.first[:vehicle_type]).to eq('sailboat')
-    expect(data.last[:vehicle_type]).to eq('campervan')
-    data2 = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_length_ft', sort_order: 'desc')
-    expect(data2.first[:vehicle_length_ft]).to eq(40)
-    expect(data2.last[:vehicle_length_ft]).to eq(28)
-  end
+    it 'can optionally sort by valid headers, asc default' do
+      data = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_type')
+      expect(data.first[:vehicle_type]).to eq('campervan')
+      expect(data.last[:vehicle_type]).to eq('sailboat')
+      data2 = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_length_ft')
+      expect(data2.first[:vehicle_length_ft]).to eq(28)
+      expect(data2.last[:vehicle_length_ft]).to eq(40)
+    end
 
-  it 'can optionally sort by "vehicle_name"' do
-    data = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_type')
-    expect(data.first[:vehicle_type]).to eq('campervan')
-    expect(data.last[:vehicle_type]).to eq('sailboat')
+    it 'can optionally sort by valid headers, desc' do
+      data = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_type', sort_order: 'desc')
+      expect(data.first[:vehicle_type]).to eq('sailboat')
+      expect(data.last[:vehicle_type]).to eq('campervan')
+      data2 = CustomerImporter.import(file_path: commas_path, sort_by: 'vehicle_length_ft', sort_order: 'desc')
+      expect(data2.first[:vehicle_length_ft]).to eq(40)
+      expect(data2.last[:vehicle_length_ft]).to eq(28)
+    end
+
+    CustomerImporter::HEADERS.each do |header|
+      it "can optionally sort by #{header}" do
+        data = CustomerImporter.import(file_path: commas_path, sort_by: header)
+        sorted_result = commas_result.sort_by { |hash| hash[header.to_sym] }
+        expect(data.first[header.to_sym]).to eq(sorted_result.first[header.to_sym])
+        expect(data.last[header.to_sym]).to eq(sorted_result.last[header.to_sym])
+      end
+    end
   end
 end
