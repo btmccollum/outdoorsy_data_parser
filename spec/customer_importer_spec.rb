@@ -38,7 +38,7 @@ RSpec.describe CustomerImporter do
     ]
   end
 
-  it 'accepts a csv file' do
+  it 'accepts a file with comma separated values' do
     expect(File).to receive(:open).with(commas_path)
     CustomerImporter.import(file_path: commas_path)
   end
