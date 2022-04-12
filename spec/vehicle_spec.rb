@@ -23,4 +23,3 @@ RSpec.describe Vehicle do
     end
   end
 end
-
