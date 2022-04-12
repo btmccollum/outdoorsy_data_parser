@@ -4,7 +4,7 @@ require 'pry'
 
 # Handle CSV parsing
 class CustomerImporter
-  COMMON_SEPERATORS = ['|', ',', ';', '#', '/t'].freeze
+  COMMON_SEPERATORS = ['|', ',', ';', '\t', '#'].freeze
 
   def self.import(file_path:)
     @file_path = file_path
@@ -16,14 +16,14 @@ class CustomerImporter
     File.open(@file_path) do |file|
       CSV.foreach(file, col_sep: determine_probable_seperator(file.readline)) do |row|
         customer = Customer.new(first_name: row[0], last_name: row[1], email: row[2])
-        vehicle = Vehicle.new(type: row[3], name: row[4], length: row[5])
+        vehicle = Vehicle.new(type: row[3], name: row[4], length_ft: row[5])
 
         @data << {
           full_name: customer.full_name,
           email: customer.email,
           vehicle_type: vehicle.type,
           vehicle_name: vehicle.name,
-          vehicle_length: vehicle.length
+          vehicle_length_ft: vehicle.length_ft
         }
       end
     end
@@ -31,7 +31,7 @@ class CustomerImporter
   end
 
   def self.determine_probable_seperator(line)
-    COMMON_SEPERATORS.group_by { |sep| line.count(sep) }.max.flatten[1]
+    COMMON_SEPERATORS.group_by { |seperator| line.count(seperator) }.max.flatten[1]
   end
 
   class << self

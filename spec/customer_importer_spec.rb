@@ -12,28 +12,28 @@ RSpec.describe CustomerImporter do
         email: 'greta@future.com',
         vehicle_type: 'sailboat',
         vehicle_name: 'fridays for future',
-        vehicle_length: '32’'
+        vehicle_length_ft: 32.0
       },
       {
         full_name: 'xiuhtezcatl martinez',
         email: 'martinez@earthguardian.org',
         vehicle_type: 'campervan',
         vehicle_name: 'earth guardian',
-        vehicle_length: '28 feet'
+        vehicle_length_ft: 28.0
       },
       {
         full_name: 'mandip singh soin',
         email: 'mandip@ecotourism.net',
         vehicle_type: 'motorboat',
         vehicle_name: 'frozen trekker',
-        vehicle_length: '32’'
+        vehicle_length_ft: 32.0
       },
       {
         full_name: 'jimmy buffet',
         email: 'jb@sailor.com',
         vehicle_type: 'sailboat',
         vehicle_name: 'margaritaville',
-        vehicle_length: '40 ft'
+        vehicle_length_ft: 40.0
       }
     ]
   end
@@ -44,28 +44,28 @@ RSpec.describe CustomerImporter do
         email: 'a@adams.com',
         vehicle_type: 'motorboat',
         vehicle_name: 'rushing water',
-        vehicle_length: '24’'
+        vehicle_length_ft: 24.0
       },
       {
         full_name: 'steve irwin',
         email: 'steve@crocodiles.com',
         vehicle_type: 'rv',
         vehicle_name: 'g’day for adventure',
-        vehicle_length: '32 ft'
+        vehicle_length_ft: 32.0
       },
       {
         full_name: 'isatou ceesay',
         email: 'isatou@recycle.com',
         vehicle_type: 'campervan',
         vehicle_name: 'plastic to purses',
-        vehicle_length: '20’'
+        vehicle_length_ft: 20.0
       },
       {
         full_name: 'naomi uemura',
         email: 'n.uemura@gmail.com',
         vehicle_type: 'bicycle',
         vehicle_name: 'glacier glider',
-        vehicle_length: '5 feet'
+        vehicle_length_ft: 5.0
       }
     ]
   end
