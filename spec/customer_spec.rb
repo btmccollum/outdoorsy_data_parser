@@ -9,9 +9,24 @@ RSpec.describe Customer do
     expect(customer.last_name).to eq('Test')
   end
 
+  it 'takes an optional email' do
+    expect(Customer.new(
+      first_name: 'Johnny',
+      last_name: 'Test',
+      email: 'test@example.com'
+    ).email).to eq('test@example.com')
+    expect(Customer.new(
+      first_name: 'Rachel',
+      last_name: 'Test'
+    ).email).to be_nil
+  end
+
   describe '#full_name' do
     it 'returns the full name' do
-      expect(Customer.new(first_name: 'Johnny', last_name: 'Test').full_name).to eq('Johnny Test')
+      expect(Customer.new(
+        first_name: 'Johnny',
+        last_name: 'Test'
+      ).full_name).to eq('Johnny Test')
     end
   end
 end
