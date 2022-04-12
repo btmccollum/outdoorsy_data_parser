@@ -9,4 +9,11 @@ RSpec.describe Vehicle do
     expect(vehicle.type).to eq('motorboat')
     expect(vehicle.length).to eq("32'")
   end
+
+  it 'converts all data to lowercase for consitent formatting' do
+    vehicle = Vehicle.new(name: 'BoaTY MCboatFAce', type: 'MOTORboat', length: "32'")
+    expect(vehicle.name).to eq('boaty mcboatface')
+    expect(vehicle.type).to eq('motorboat')
+    expect(vehicle.length).to eq("32'")
+  end
 end

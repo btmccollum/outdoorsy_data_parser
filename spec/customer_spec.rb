@@ -21,6 +21,13 @@ RSpec.describe Customer do
     ).email).to be_nil
   end
 
+  it 'converts all data to lowercase for consitent formatting' do
+    customer = Customer.new(first_name: 'JoHnNy', last_name: 'TEST', email: 'JTEST@gmAIL.com')
+    expect(customer.first_name).to eq('johnny')
+    expect(customer.last_name).to eq('test')
+    expect(customer.email).to eq('jtest@gmail.com')
+  end
+
   describe '#full_name' do
     it 'returns the full name' do
       expect(Customer.new(
