@@ -13,9 +13,23 @@ Use the following to access the console and get started:
 
 ## Usage
 
-This tool is intended for use with text delimited files (e.g., CSVs) containing specific information pertaining to customers and their basic vehicle details. At this time, your file should contain the following information:
+This tool is intended for use with text delimited files (e.g., CSVs) containing specific information pertaining to customers and their basic vehicle details. At this time, your file should ideally be delimeted by commas, pipes, semicolons, or tabs, and contain the following information:
 
     $ first name, last name, vehicle name, vehicle type, vehicle length (ft)
+    
+To use this tool, spin up a local console with `bin/console` and try parsing a file that matches these criteria.
+
+See documentation details below for more information, but to get started quickly and see how it works you can try the following: 
+
+`CustomerImporter.import(file_path: "./spec/fixtures/files/commas.txt")` 
+
+Optionally you can sort this data (asc) by any of the column types with the following:
+
+`CustomerImporter.import(file_path: "./spec/fixtures/files/commas.txt", sort_by: 'vehicle_name')` 
+
+If you'd prefer your sort in descending order, you can add the following:
+
+`CustomerImporter.import(file_path: "./spec/fixtures/files/commas.txt", sort_by: 'vehicle_length_ft', sort_order: 'desc')` 
 
 ### Classes
 #### `CustomerImporter`
