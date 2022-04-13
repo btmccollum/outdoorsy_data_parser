@@ -22,16 +22,16 @@ class CustomerImporter
         add_customer_data_from_row(row)
       end
     end
-    @data
   end
 
   # make a probable determination of delimiter being used by file/data
   def self.determine_delimiter(line)
-    test = COMMON_DELIMITERS.group_by { |d| line.count(d) }.max.flatten
+    # generate array with count and delimiter, [3, ',']
+    result = COMMON_DELIMITERS.group_by { |d| line.count(d) }.max.flatten
 
-    raise 'Unable to determine delimiter.' unless test[0].positive?
+    raise 'Unable to determine delimiter.' unless result[0].positive?
 
-    test[1]
+    result[1]
   end
 
   def self.add_customer_data_from_row(row)
@@ -47,8 +47,8 @@ class CustomerImporter
     }
   end
 
-  def self.sort_data(col, order)
-    sorted_data = @data.sort_by { |hash| hash[col.to_sym] }
+  def self.sort_data(key, order)
+    sorted_data = @data.sort_by { |customer_hash| customer_hash[key.to_sym] }
     order == 'asc' ? sorted_data : sorted_data.reverse
   end
 
