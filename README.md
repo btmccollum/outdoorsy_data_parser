@@ -43,14 +43,14 @@ If you'd prefer your sort in descending order, you can add the following:
         - `CustomerImporter.import(file_path: "./spec/fixtures/files/pipes.txt")` 
 
   - `sort_by` (optional, string) - a string representing the column you with to sort the data by. Can be one of the following values:
-      - full_name
-      - email
-      - vehicle_name
-      - vehicle_type
-      - vehicle_length_ft
+      - `'full_name'`
+      - `'email'`
+      - `'vehicle_name'`
+      - `'vehicle_type'`      
+      - `'vehicle_length_ft'`
   - `sort_order` (optional, string) - desired sorting order, only applicable if sort_by is present. Must be one of the following values:
-      - asc
-      - desc
+      - `'asc'`
+      - `'desc'`
 
 - Output: 
   - Import will return an array of hashes containg customer information from the file you've provided:
