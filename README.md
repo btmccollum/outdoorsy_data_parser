@@ -1,38 +1,46 @@
 # OutdoorsyDataParser
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/outdoorsy_data_parser`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Getting Started
 
-TODO: Delete this and the text above, and describe your gem
+Pull down a local copy of this repository and cd into the root. Use the
+following to install dependencies:
 
-## Installation
+    $ bin/setup
 
-Add this line to your application's Gemfile:
+Use the following to access the console and get started:
 
-```ruby
-gem 'outdoorsy_data_parser'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install outdoorsy_data_parser
+    $ bin/console
 
 ## Usage
 
-TODO: Write usage instructions here
+This tool is intended for use with text delimited files (e.g., CSVs).
+At this time, your file should contain the following informationO
+
+    $ first name, last name, vehicle name, vehicle type, vehicle length (ft)
+
+To parse a file of your choosing, you can run the following command:
+
+    $ CustomerImporter.import(file_path: <path to your file>)
+
+Note that the file path needs to be relative to your current location. You can
+also use local sample files with the following:
+
+    $ CustomerImporter.import(file_path "./spec/fixtures/files/commas.txt") 
+    $ CustomerImporter.import(file_path "./spec/fixtures/files/pipes.txt") 
+
+You can optionally sort your data by any of the following header types
+
+If a sort by option is provided, it will be in ascending order by default. You
+can pass `sort_order: 'desc'` to change this. 
+
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/outdoorsy_data_parser.
+Bug reports and pull requests are welcome on GitHub at https://github.com/btmccollum/outdoorsy_data_parser.
 
 ## License
 
