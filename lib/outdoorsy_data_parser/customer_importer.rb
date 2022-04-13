@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CustomerImporter
-  COMMON_DELIMITERS = ['|', ',', ';', '\t', '#'].freeze
+  COMMON_DELIMITERS = ['|', ',', ';', '\t'].freeze
   HEADERS = %w[full_name email vehicle_name vehicle_type vehicle_length_ft].freeze
 
   # TODO: account for data in addition to file path
