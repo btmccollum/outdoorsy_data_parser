@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'outdoorsy_data_parser/customer'
-require 'pry'
 
 RSpec.describe Customer do
   it 'takes a first and last name' do

@@ -1,8 +1,3 @@
-PATH
-  remote: .
-  specs:
-    outdoorsy_data_parser (0.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,7 +46,6 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
-  outdoorsy_data_parser!
   pry
   rake (~> 13.0)
   rspec (~> 3.0)

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'outdoorsy_data_parser/customer_importer'
-require 'pry'
 
 RSpec.describe CustomerImporter do
   let(:commas_path) { './spec/fixtures/files/commas.txt' }
