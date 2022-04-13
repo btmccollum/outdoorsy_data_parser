@@ -70,20 +70,15 @@ RSpec.describe CustomerImporter do
     ]
   end
 
-  it 'accepts a file with comma separated values' do
+  it 'accepts a txt file with delimited values' do
     expect(File).to receive(:open).with(commas_path)
     CustomerImporter.import(file_path: commas_path)
   end
 
-  it 'accepts a file with pipe delimited values' do
-    expect(File).to receive(:open).with(pipes_path)
-    CustomerImporter.import(file_path: pipes_path)
-  end
-
-  CustomerImporter::COMMON_DELIMITERS.each do |sep|
-    it "can detect when #{sep} is used as a delimiter" do
-      line = 'a b c d e'.gsub(' ', sep)
-      expect(CustomerImporter.send(:determine_delimiter, line)).to eq(sep)
+  CustomerImporter::COMMON_DELIMITERS.each do |delim|
+    it "can detect when #{delim} is used as a delimiter" do
+      line = 'a b c d e'.gsub(' ', delim)
+      expect(CustomerImporter.send(:determine_delimiter, line)).to eq(delim)
     end
   end
 
