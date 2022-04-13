@@ -81,11 +81,17 @@ RSpec.describe CustomerImporter do
     CustomerImporter.import(file_path: pipes_path)
   end
 
-  CustomerImporter::COMMON_SEPERATORS.each do |sep|
-    it "can detect when #{sep} is used" do
+  CustomerImporter::COMMON_DELIMITERS.each do |sep|
+    it "can detect when #{sep} is used as a delimiter" do
       line = 'a b c d e'.gsub(' ', sep)
-      expect(CustomerImporter.send(:determine_seperator, line)).to eq(sep)
+      expect(CustomerImporter.send(:determine_delimiter, line)).to eq(sep)
     end
+  end
+
+  it 'returns an error if unable to recognize the delimiter' do
+    expect do
+      CustomerImporter.send(:determine_delimiter, 'a"b"c"d')
+    end.to raise_error('Unable to determine delimiter.')
   end
 
   it 'returns an array of hashes with customer data from comma separated values' do

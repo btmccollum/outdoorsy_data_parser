@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class CustomerImporter
-  COMMON_SEPERATORS = ['|', ',', ';', '\t', '#'].freeze
+  COMMON_DELIMITERS = ['|', ',', ';', '\t', '#'].freeze
   HEADERS = %w[full_name email vehicle_name vehicle_type vehicle_length_ft].freeze
 
-  # TODO: account for data in addition to file
+  # TODO: account for data in addition to file path
   def self.import(file_path:, sort_by: nil, sort_order: 'asc')
     raise 'Sort order can only be \'asc\' or \'desc\'' unless %w[asc desc].include?(sort_order)
 
@@ -18,7 +18,7 @@ class CustomerImporter
 
   def self.parse_file
     File.open(@file_path) do |file|
-      CSV.foreach(file, col_sep: determine_seperator(file.readline)) do |row|
+      CSV.foreach(file, col_sep: determine_delimiter(file.readline)) do |row|
         add_customer_data_from_row(row)
       end
     end
@@ -26,8 +26,12 @@ class CustomerImporter
   end
 
   # make a probable determination of delimiter being used by file/data
-  def self.determine_seperator(line)
-    COMMON_SEPERATORS.group_by { |seperator| line.count(seperator) }.max.flatten[1]
+  def self.determine_delimiter(line)
+    test = COMMON_DELIMITERS.group_by { |d| line.count(d) }.max.flatten
+
+    raise 'Unable to determine delimiter.' unless test[0].positive?
+
+    test[1]
   end
 
   def self.add_customer_data_from_row(row)
@@ -49,6 +53,6 @@ class CustomerImporter
   end
 
   class << self
-    private :parse_file, :determine_seperator, :add_customer_data_from_row, :sort_data
+    private :parse_file, :determine_delimiter, :add_customer_data_from_row, :sort_data
   end
 end
